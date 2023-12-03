@@ -2,11 +2,11 @@ def check_neighbours(lines, row, col, nrow, ncol):
 	for n in range(-1 * (row != 0), (1 * (row != nrow - 1)) + 1):
 		for i in range(-1 * (col != 0), (1 * (col != ncol - 1)) + 1):
 			if (not lines[row + n][col + i] in "0123456789."):
-				return 0
-	return 1
+				return 1
+	return 0
 
-def main():
-	with open("day3_input.txt") as f:
+def part1():
+	with open("day3_input") as f:
 		lines = f.read().split('\n')
 	
 	total = 0
@@ -17,20 +17,18 @@ def main():
 			if ((col < end) or (not elem in "0123456789")):
 				continue
 			if (elem in "0123456789"):
-				start, end, valid = col, col, True
-				while (elem in "0123456789"):
-					if (end == len(lines[row])):
-						end += 1
-						break
-					elem = lines[row][end]
-					if (valid and not check_neighbours(lines, row, end, len(lines), len(lines[row]))):
-						valid = False
+				start, end, valid = col, col, False
+				while (end < len(lines[row]) and lines[row][end] in "0123456789"):
+					if (check_neighbours(lines, row, end, len(lines), len(lines[row]))):
+						valid = True
 					end += 1
 				if (valid):
-					print(f'valid: {lines[row][start:end - 1]} at row {row}')
-					total += int(lines[row][start:end - 1])
+					total += int(lines[row][start:end])
 	
 	print(f'result: {total}')
+
+def main():
+	part1()
 
 if __name__ == "__main__":
 	main()
