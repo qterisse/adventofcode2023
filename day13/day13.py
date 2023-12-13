@@ -60,7 +60,7 @@ def main(part=1):
 			if (found):
 				break
 
-	print (f'part1: {total}')
+	print (f'part{part}: {total}')
 
 if __name__ == "__main__":
 	main(2)
