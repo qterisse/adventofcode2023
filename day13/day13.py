@@ -1,13 +1,3 @@
-"""
-# . . . # # . . #  0
-# . . . . # . . #  1
-. . # # . . # # #  2
-# # # # # . # # .  3
-# # # # # . # # .  4
-. . # # . . # # #  5
-# . . . . # . . #  6
-"""
-
 def is_mirror(pattern, index):
 	for n, line in enumerate(pattern[index+1:]):
 		if (n > index):
